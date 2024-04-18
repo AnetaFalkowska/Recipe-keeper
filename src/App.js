@@ -7,6 +7,7 @@ import RecipesPage from "./Pages/Recipes";
 import RecipeDetailPage from "./Pages/RecipeDetail";
 import NewRecipePage from "./Pages/NewRecipe";
 import EditRecipePage from "./Pages/EditRecipe";
+import SearchResultsPage from "./Pages/SearchResults"
 import { action as manipulateRecipeAction } from "./components/RecipeForm";
 import { loader as recipesLoader } from "./Pages/Recipes";
 import { loader as recipeLoader } from "./Pages/RecipeDetail";
@@ -27,11 +28,12 @@ const router = createBrowserRouter([
       {
         path: "recipes",
         element: <RecipesRootPage />,
+        id: "all-recipes",
+        loader: recipesLoader,
         children: [
           {
             index: true,
-            element: <RecipesPage />,
-            loader: recipesLoader,
+            element: <RecipesPage />,            
           },
           {
             path: ":id",
@@ -56,6 +58,10 @@ const router = createBrowserRouter([
             element: <NewRecipePage />,
             action: manipulateRecipeAction,
           },
+          {
+            path: "search",
+            element: <SearchResultsPage />,            
+          }
         ],
       },
     ],

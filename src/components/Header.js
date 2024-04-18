@@ -1,6 +1,6 @@
 import FoodImg from "../assets/ramen.png"
 import classes from "./Header.module.css"
-import Finder from "./Finder";
+import SearchBar from "./SearchBar";
 
 
 export default function Header() {
@@ -10,7 +10,7 @@ export default function Header() {
         <img src={FoodImg} alt="ramen" />
         <h1>Recipe keeper</h1>        
       </div>
-      <Finder />
+      <SearchBar />
     </header>
   );
 }

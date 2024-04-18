@@ -71,5 +71,5 @@ export async function action({ request, params }) {
   if (!response.ok) {
     throw json({ message: "Could not save recipe" }, { status: 500 });
   }
-  return redirect("/");
+  return redirect("/recipes");
 }
