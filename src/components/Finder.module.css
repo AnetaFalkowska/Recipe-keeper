@@ -1,0 +1,51 @@
+.finder {
+  display: flex;
+  flex:1;
+  max-width: 450px;
+  margin-top: 20px;
+  margin-right:20px
+}
+
+.finder input {
+  
+  flex: 1;
+  padding-left: 10px;
+  border: solid 1px rgb(199, 195, 195);
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  box-shadow: inset 1px 2px 3px rgba(0, 0, 0, 0.05);
+}
+
+.finder input::placeholder {
+  font-size: 16px;
+}
+
+.finder input:focus,
+.finder input:hover {
+border: solid 1px #064420;
+}
+
+.finder button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-left: -1px;
+  border: solid 1px rgb(199, 195, 195);
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  background-color: #FAF1E6;
+  cursor: pointer;
+  transition: background-color 0.5s
+}
+
+.finder button:hover {
+  background-color:  rgba(247, 222, 191, 0.937);  
+}
+
+.finder img {
+  width: 28px;
+  margin-top: px;
+  margin-right: px;
+}

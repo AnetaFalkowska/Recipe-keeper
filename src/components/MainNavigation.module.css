@@ -1,0 +1,22 @@
+.menu {
+  display: flex;
+  background-color: #064420;
+  padding: 17px;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.menu a {
+  color: #fdfaf6;
+  font-size: 18px;
+  margin-left: 15px;
+  margin-right: 15px;
+  text-decoration: none;
+}
+
+.menu a:hover,
+.menu a:active,
+.menu a.active {
+  color: #f5cb98
+}
+

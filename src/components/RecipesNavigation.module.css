@@ -1,0 +1,23 @@
+.list {
+    display:flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.list a {
+    height: 40px;
+    width: 120px;
+    background-color: #E4EFE7;
+    color: #064420;
+    border-radius: 4px;
+    text-decoration: none;
+    text-align:center;
+    padding: 10px;
+}
+
+.list a:active,
+.list a:hover,
+.list a.active {
+    background-color:#064420;
+    color:#fdfaf6
+}
