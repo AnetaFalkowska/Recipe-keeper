@@ -3,13 +3,13 @@ import classes from "./RecipesNavigation.module.css"
 
 export default function RecipesNavigation() {
   return (
-    <div className={classes.header}>
+    <header className={classes["recipes-menu"]}>
       <nav>
-        <ul className={classes.list}>          
-          <NavLink to="/recipes" className={({isActive})=> isActive ? classes.active : undefined} end>All Recipes</NavLink>
-          <NavLink to="/recipes/new" className={({isActive})=> isActive ? classes.active : undefined} >New Recipe</NavLink>
+        <ul>          
+          <li><NavLink to="/recipes" className={({isActive})=> isActive ? classes.active : undefined} end>All Recipes</NavLink></li>
+          <li><NavLink to="/recipes/new" className={({isActive})=> isActive ? classes.active : undefined} >New Recipe</NavLink></li>
         </ul>
       </nav>
-    </div>
+    </header>
   );
 }

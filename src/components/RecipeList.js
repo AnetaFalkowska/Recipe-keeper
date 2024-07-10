@@ -11,10 +11,10 @@ export default function RecipeList({ recipes }) {
             const id = recipe.name.replace(/\s+/g, "-");
             const imageUrl = recipe.imageUrl || FoodImg
           return (
-            <Link key={recipe.id} to={`/recipes/${id}`} className={classes["recipe-item"]}>
-              <img src={imageUrl} />
-              <h3>{recipe.name}</h3>             
-            </Link>
+            <li key={recipe.id} className={classes["recipe-item"]}><Link to={`/recipes/${id}`} >
+            <img src={imageUrl} />
+            <h3>{recipe.name}</h3>             
+          </Link></li>
           );
         })}
       </ul>

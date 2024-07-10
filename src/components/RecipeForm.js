@@ -10,7 +10,7 @@ export default function RecipeForm({recipe, method}) {
     navigate("/recipes")
   }
   return (
-    <div className={classes.formContainer}>
+    <div className={classes["form-container"]}>
       <Form method={method} className={classes.form}>
         <p>
           <label htmlFor="name">Name</label>

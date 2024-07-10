@@ -1,20 +1,19 @@
 .menu {
+  display:flex;
+  justify-content: center;
   background-color: #064420;
-  padding: 17px;
+  padding: 30px;
   margin-bottom: 30px;
 }
 
 .menu ul {
-  list-style: none;
   display: flex;
-  justify-content: center;
+  gap:40px;
 }
 
 .menu a {
   color: #fdfaf6;
   font-size: 18px;
-  margin-left: 15px;
-  margin-right: 15px;
   text-decoration: none;
 }
 
