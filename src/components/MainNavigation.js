@@ -33,7 +33,7 @@ export default function MainNavigation() {
       </nav>
       <section className={classes["search-section"]}>
         <div className={classes.logo}>
-          <img src={FoodImg} alt="ramen picture" />
+          <img src={FoodImg} alt="ramen" />
           <h1>Recipe keeper</h1>
         </div>
         <SearchBar />
