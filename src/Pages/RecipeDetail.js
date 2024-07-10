@@ -20,7 +20,7 @@ export async function loader({ request, params }) {
 
 export async function action({request, params}) {
   const recipeId = params.id
-  console.log(recipeId)
+  
   const response = await fetch("http://localhost:5000/recipes/" + recipeId, {method:request.method})
   if (!response.ok) {
     throw new Error("Could not delete recipe")

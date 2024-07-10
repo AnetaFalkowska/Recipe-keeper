@@ -5,13 +5,13 @@ import SearchBar from "./SearchBar";
 
 export default function Header() {
   return (
-    <header className={classes['nav-header']}>
+    <section className={classes['main-header']}>
       <div className={classes.logo}>
-        <img src={FoodImg} alt="ramen" />
+        <img src={FoodImg} alt="ramen picture" />
         <h1>Recipe keeper</h1>        
       </div>
       <SearchBar />
-    </header>
+    </section>
   );
 }
 

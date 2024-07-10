@@ -8,10 +8,13 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   row-gap: 40px;
-  column-gap:10px;
+  column-gap: 10px;
 }
 
 .recipe-item {
+  text-align: center;
+  max-width: 300px;
+  padding: 0;
   text-decoration: none;
 }
 

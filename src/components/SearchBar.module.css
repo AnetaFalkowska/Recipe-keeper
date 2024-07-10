@@ -2,27 +2,22 @@
   display: flex;
   flex:1;
   max-width: 450px;
-  margin-top: 20px;
-  margin-right:20px
+  padding-top: 20px;
 }
 
-.finder input {
-  
-  flex: 1;
+.finder input {  
+  width: 100%;
   padding-left: 10px;
   border: solid 1px rgb(199, 195, 195);
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
   box-shadow: inset 1px 2px 3px rgba(0, 0, 0, 0.05);
-}
-
-.finder input::placeholder {
+  outline: none;
   font-size: 16px;
 }
 
-.finder input:focus,
-.finder input:hover {
-border: solid 1px #064420;
+.finder input:focus {
+border-color: #064420;
 }
 
 .finder button {
@@ -46,6 +41,4 @@ border: solid 1px #064420;
 
 .finder img {
   width: 28px;
-  margin-top: px;
-  margin-right: px;
 }
