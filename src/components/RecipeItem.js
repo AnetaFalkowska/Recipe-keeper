@@ -45,6 +45,9 @@ export default function RecipeItem({ recipe }) {
         title="Are you sure?"
         message="Do you really want to delete this recipe?"
         actions={actions}
+        onClose={() => {
+          setOpenModal(false);
+        }}
       ></Modal>
       <div className={classes.recipe}>
         <div className={classes.card}>

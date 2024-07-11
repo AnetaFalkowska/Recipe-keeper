@@ -1,7 +1,8 @@
 import { useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
+import classes from "./Modal.module.css"
 
-export default function Modal({ open, title, message, actions }) {
+export default function Modal({ open, title, message, actions, onClose }) {
   const dialog = useRef();
   useEffect(() => {
     if (open) {
@@ -12,10 +13,10 @@ export default function Modal({ open, title, message, actions }) {
   }, [open]);
 
   return createPortal(
-    <dialog ref={dialog}>
+    <dialog ref={dialog} className={classes.modal} onClose={onClose}>
       <h2>{title}</h2>
       <p>{message}</p>
-      <div>{actions}</div>
+      <div className={classes.actions}>{actions}</div>
     </dialog>,
     document.getElementById("modal")
   );

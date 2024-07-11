@@ -39,6 +39,32 @@ border-color: #064420;
   background-color:  rgba(247, 222, 191, 0.937);  
 }
 
-.finder img {
+.finder img,
+.loop img {
   width: 28px;
+}
+
+.loop {
+  display:none;
+  padding-top: 20px;
+}
+
+.loop button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  border:none;
+  background-color: transparent;
+}
+
+@media screen and (max-width: 768px) {
+  .finder {
+    display: none;
+  }
+  .loop {
+    display: inline-block;
+  }
 }

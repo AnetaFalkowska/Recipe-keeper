@@ -29,6 +29,9 @@ export default function RecipeForm({ recipe, method }) {
         title="Are you sure?"
         message="Do you really want to discard changes?"
         actions={actions}
+        onClose={() => {
+          setOpenModal(false);
+        }}
       ></Modal>
       <Form method={method} className={classes.form}>
         <p>

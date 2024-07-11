@@ -34,7 +34,7 @@
   height: 200px;
   object-fit: cover;  
   border-radius: 2px;
-  
+  outline-offset:25px;  
 }
 
 .recipe-item h3 {
