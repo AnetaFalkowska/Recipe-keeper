@@ -1,5 +1,6 @@
 .recipe {
-  max-width: 45%;
+  width: 80%;
+  max-width: 700px;
   border-radius: 20px;
   margin: 50px auto;
   padding: 20px 40px;
@@ -7,16 +8,15 @@
 }
 
 .card {
-text-align: center;
+  text-align: center;
   display: flex;
   flex-direction: column;
-
   gap: 40px;
 }
 
 .card h2 {
-    width:60%;
-    margin:20px auto;
+  width: 60%;
+  margin: 20px auto;
 }
 
 .card-section {
@@ -67,9 +67,9 @@ text-align: center;
   font-size: 16px;
   border: none;
   border-radius: 4px;
-  background-color: #FAF1E6;
+  background-color: #faf1e6;
   color: rgb(80, 79, 79);
-  transition: background-color 0.5s
+  transition: background-color 0.5s;
 }
 
 .actions a {
@@ -79,7 +79,23 @@ text-align: center;
 
 .actions button:hover,
 .actions a:hover {
-
   background-color: rgba(247, 222, 191, 0.937);
+}
 
+@media screen and (max-width: 768px) {
+  .recipe {
+    padding: 10px 15px;
+    width: 95%;
+  }
+  .card {
+    gap: 15px;
+  }
+  .card-section {
+    flex-direction: column-reverse;
+    gap: 30px;
+  }
+  .card-section img {
+    max-width: 70%;
+    align-self: center;
+}
 }
