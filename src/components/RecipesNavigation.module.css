@@ -1,13 +1,14 @@
 .recipes-menu {
     display:flex;
-    justify-content: center;
+    justify-content: center;    
     padding: 17px;
-    margin: 30px auto;
+    margin: 40px auto;
 }
 
 .recipes-menu ul {
     display:flex;
     gap: 40px;
+    align-items: stretch;
 }
 
 .recipes-menu a {
@@ -27,3 +28,10 @@
     background-color:#064420;
     color:#fdfaf6
 }
+
+@media screen and (max-width: 768px) {
+    .recipes-menu {
+        margin: 20px auto;
+    }
+  }
+  

@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import classes from "./MainNavigation.module.css";
-import FoodImg from "../assets/ramen.png";
+import FoodImg from "../assets/food.png";
 import SearchIcon from "../assets/glass.png";
 import LeftArrow from "../assets/left-arrow.png";
 
@@ -47,7 +47,7 @@ export default function MainNavigation() {
       <section className={classes["search-section"]}>
         {!showFullWidthSearchBar && (
           <div className={classes.logo}>
-            <img src={FoodImg} alt="ramen" />
+            <img src={FoodImg} alt="food" />
             <h1>Recipe keeper</h1>
           </div>
         )}

@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom"
 import classes from "./RecipeList.module.css"
-import FoodImg from "../assets/ramen.png";
+import FoodImg from "../assets/food.png";
 
 
 export default function RecipeList({ recipes }) {
