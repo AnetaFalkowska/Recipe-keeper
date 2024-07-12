@@ -37,11 +37,11 @@ export default function RecipeForm({ recipe, method }) {
       ></Modal>
       <Form method={method} className={classes.form}>
         <p>
-          <label htmlFor="name">Name</label>
+          <label htmlFor="title">Title</label>
           <input
             type="text"
-            id="name"
-            name="name"
+            id="title"
+            name="title"
             required
             defaultValue={recipe ? recipe.name : ""}
           ></input>
@@ -106,7 +106,7 @@ export async function action({ request, params }) {
   const ingredients = data.get("ingredients").replace(/\n/g, "\n");
   const directions = data.get("directions").replace(/\n/g, "\n");
   const recipeData = {
-    name: data.get("name"),
+    title: data.get("title"),
     imageUrl: data.get("imageUrl"),
     source: data.get("source"),
     ingredients,

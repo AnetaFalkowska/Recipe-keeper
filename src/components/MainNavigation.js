@@ -18,7 +18,7 @@ export default function MainNavigation() {
   }
 
   return (
-    <header>
+    <header className={classes.header}>
       <nav className={classes.menu}>
         <ul>
           <li>

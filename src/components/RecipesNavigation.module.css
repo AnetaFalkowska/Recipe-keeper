@@ -1,8 +1,11 @@
 .recipes-menu {
+    position:sticky;
+    top:200px;
     display:flex;
     justify-content: center;    
-    padding: 17px;
-    margin: 40px auto;
+    background-color: #FDFAF6;;
+    padding: 20px;
+    margin: 0 auto 30px;
 }
 
 .recipes-menu ul {
@@ -32,9 +35,3 @@
     color:#fdfaf6
 }
 
-@media screen and (max-width: 768px) {
-    .recipes-menu {
-        margin: 20px auto;
-    }
-  }
-  

@@ -60,7 +60,7 @@ export default function RecipeItem({ recipe }) {
       ></Modal>
       <div className={classes.recipe}>
         <div className={classes.card}>
-          <h2>{recipe.name}</h2>
+          <h2>{recipe.title}</h2>
           <div className={classes["card-section"]}>
             {ingredientsList && <div>{ingredientsList}</div>}
             <img

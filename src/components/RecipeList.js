@@ -8,7 +8,7 @@ export default function RecipeList({ recipes }) {
     <div className={classes.recipes}>
       <ul className={classes.list}>
         {recipes.map((recipe) => {
-            const id = recipe.name.replace(/\s+/g, "-");
+            const id = recipe.title.replace(/\s+/g, "-");
             const imageUrl = recipe.imageUrl || FoodImg
           return (
             <li key={recipe.id} className={classes["recipe-item"]}><Link to={`/recipes/${id}`} >
@@ -17,7 +17,7 @@ export default function RecipeList({ recipes }) {
                     e.target.src = FoodImg;
                   }}
                   />
-            <h3>{recipe.name}</h3>             
+            <h3>{recipe.title}</h3>             
           </Link></li>
           );
         })}
