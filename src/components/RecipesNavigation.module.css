@@ -12,14 +12,17 @@
 }
 
 .recipes-menu a {
-    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45px;
     width: 120px;
+    font-size: 16px;
     background-color: #E4EFE7;
     color: #064420;
     border-radius: 4px;
+    transition: background-color 0.2s;
     text-decoration: none;
-    text-align:center;
-    padding: 10px;
 }
 
 .recipes-menu a:active,

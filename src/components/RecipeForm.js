@@ -2,22 +2,24 @@ import { Form, json, redirect, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import classes from "./RecipeForm.module.css";
 import Modal from "./UI/Modal";
+import Button from "./UI/Button";
 
 export default function RecipeForm({ recipe, method }) {
   const [openModal, setOpenModal] = useState(false);
 
   const navigate = useNavigate();
   const actions = (
-    <div>
-      <button
+    <>
+      <Button
+        textOnly
         onClick={() => {
           setOpenModal(false);
         }}
       >
         No
-      </button>
-      <button onClick={handleConfirmCancel}>Yes</button>
-    </div>
+      </Button>
+      <Button onClick={handleConfirmCancel}>Yes</Button>
+    </>
   );
   function handleConfirmCancel() {
     navigate("/recipes");
@@ -83,15 +85,16 @@ export default function RecipeForm({ recipe, method }) {
           ></textarea>
         </p>
         <div className={classes.actions}>
-          <button
+          <Button
+            textOnly
             type="button"
             onClick={() => {
               setOpenModal(true);
             }}
           >
             Cancel
-          </button>
-          <button>Save Recipe</button>
+          </Button>
+          <Button>Save Recipe</Button>
         </div>
       </Form>
     </div>

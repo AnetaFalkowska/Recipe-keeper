@@ -5,8 +5,13 @@
 }
 
 .form {
-  width: 400px;
+  width: 500px;
+  margin:10px;
   padding: 20px;
+  background-color: #FAF1E6;  
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 
 .form label {
@@ -18,9 +23,11 @@
 .form textarea {
   width: 100%;
   padding: 6px;
-  border: solid 1px rgb(199, 195, 195);
+  background-color:#FDFAF6; 
+  border: none;
   border-radius: 2px;
   outline: none;
+  margin-bottom: 10px;
 }
 
 .form input:focus, .form textarea:focus {
@@ -29,19 +36,7 @@
 
 .actions {
   display: flex;
-  justify-content: space-between
+  justify-content: end;
+  gap:15px;
 }
 
-.actions button {
-  height: 45px;
-  width: 120px;
-  font-size: 16px;
-  border: none;
-  border-radius: 4px;
-  background-color: rgba(247, 222, 191, 0.937);
-  color: rgb(80, 79, 79);
-}
-
-.actions button[type="button"] {
-  background-color: #faf1e6;
-}

@@ -12,7 +12,11 @@ export default function RecipeList({ recipes }) {
             const imageUrl = recipe.imageUrl || FoodImg
           return (
             <li key={recipe.id} className={classes["recipe-item"]}><Link to={`/recipes/${id}`} >
-            <img src={imageUrl} alt="dish"/>
+            <img src={imageUrl} alt="dish" 
+            onError={(e) => {
+                    e.target.src = FoodImg;
+                  }}
+                  />
             <h3>{recipe.name}</h3>             
           </Link></li>
           );

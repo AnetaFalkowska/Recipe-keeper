@@ -1,5 +1,9 @@
-export default function Button({ children, className, textOnly }) {
-  let classes= textOnly ? "text-button" : "button"
+import classes from "./Button.module.css"
 
-  return <button className={classes}>{children}</button>;
+export default function Button({ children, Container="button", textOnly, className, ...props }) {
+ 
+  const baseClass = textOnly ? classes["text-button"] : classes["button"];
+  const combinedClass = `${baseClass} ${className || ''}`;
+
+  return <Container {...props} className={combinedClass}>{children}</Container>;
 }
