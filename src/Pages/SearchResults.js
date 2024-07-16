@@ -1,21 +1,55 @@
-import { useLocation, useRouteLoaderData } from "react-router-dom";
+import {useMemo} from 'react';
+import { useLocation, useRouteLoaderData, json } from "react-router-dom";
 import RecipeList from "../components/RecipeList";
 
-export default function SearchResultsPage() {
-  const data = useRouteLoaderData("all-recipes");
-  const allRecipes = data.recipes;
-  const location = useLocation();
-  const searchItem = location.state;
-
-  const filteredRecipes = allRecipes.filter(
+function filterRecipes(recipes, searchItem) {
+  return recipes.filter(
     (recipe) =>
-      recipe.name
+      recipe.title
         .toLocaleLowerCase()
         .includes(searchItem.toLocaleLowerCase()) ||
       recipe.ingredients
         .toLocaleLowerCase()
         .includes(searchItem.toLocaleLowerCase())
   );
+}
 
-  return <RecipeList recipes={filteredRecipes} />;
+export default function SearchResultsPage({ type }) {
+  const data = useRouteLoaderData(
+    type === "local" ? "my-recipes" : "online-recipes"
+  );
+  const location = useLocation();
+  const searchItem = location.state;
+  const searchResults = useMemo(() => {
+    if (type === "local") {
+      const { recipes: allRecipes } = data;
+      if (allRecipes && searchItem) {
+        return filterRecipes(allRecipes, searchItem);
+      }
+      return [];
+    } else {
+      return data.meals
+      // const { hits: onlineRecipes } = data;
+      // if (onlineRecipes) {
+      //   return onlineRecipes.map((hit) => hit.recipe);
+      // }
+      // return [];
+    }
+  }, [type, data, searchItem]);
+
+  return <RecipeList type={type} recipes={searchResults} searchItem={searchItem} />;
+}
+
+export async function onlineRecipesLoader({ params, request }) {
+  const url = new URL(request.url);
+  const query = url.searchParams.get("query");
+  const response = await fetch(
+    // `https://api.edamam.com/search?q=${query}&app_id=6a07e1ba&app_key=53599fa750851728a2ed608df614e0e6`
+    `https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`
+  );
+
+  if (!response.ok) {
+    throw json({ message: "Could not fetch recipes" }, { status: 500 });
+  }
+  return response;
 }

@@ -7,12 +7,13 @@ import RecipesPage from "./Pages/Recipes";
 import RecipeDetailPage from "./Pages/RecipeDetail";
 import NewRecipePage from "./Pages/NewRecipe";
 import EditRecipePage from "./Pages/EditRecipe";
-import SearchResultsPage from "./Pages/SearchResults"
+import SearchResultsPage from "./Pages/SearchResults";
 import { action as manipulateRecipeAction } from "./components/RecipeForm";
 import { loader as recipesLoader } from "./Pages/Recipes";
 import { loader as recipeLoader } from "./Pages/RecipeDetail";
-import {action as deleteRecipeAction} from "./Pages/RecipeDetail"
-
+import { action as deleteRecipeAction } from "./Pages/RecipeDetail";
+import { onlineRecipesLoader } from "./Pages/SearchResults";
+import { onlineRecipeLoader } from "./Pages/RecipeDetail";
 import "./App.css";
 
 const router = createBrowserRouter([
@@ -28,22 +29,22 @@ const router = createBrowserRouter([
       {
         path: "recipes",
         element: <RecipesRootPage />,
-        id: "all-recipes",
+        id: "my-recipes",
         loader: recipesLoader,
         children: [
           {
             index: true,
-            element: <RecipesPage />,            
+            element: <RecipesPage />,
           },
           {
             path: ":id",
-            id: "recipe-id",
+            id: "local-id",
             loader: recipeLoader,
             children: [
               {
                 index: true,
-                element: <RecipeDetailPage />,
-                action: deleteRecipeAction              
+                element: <RecipeDetailPage type="local"/>,
+                action: deleteRecipeAction,
               },
               {
                 path: "edit",
@@ -52,7 +53,6 @@ const router = createBrowserRouter([
               },
             ],
           },
-          ,
           {
             path: "new",
             element: <NewRecipePage />,
@@ -60,9 +60,21 @@ const router = createBrowserRouter([
           },
           {
             path: "search",
-            element: <SearchResultsPage />,            
-          }
+            element: <SearchResultsPage type="local"/>,
+          },
         ],
+      },
+      {
+        path: "search-online",
+        id: "online-recipes",
+        loader: onlineRecipesLoader,
+        element: <SearchResultsPage type="online"/>,
+      },
+      {
+        path: "search-online/:id",
+        id: "online-id",
+        loader: onlineRecipeLoader,
+        element: <RecipeDetailPage type="online"/>,
       },
     ],
   },

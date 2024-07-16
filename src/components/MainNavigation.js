@@ -11,9 +11,15 @@ export default function MainNavigation() {
 
   const navigate = useNavigate();
 
-  function handleSearch() {
+  function handleLocalSearch() {
     if (searchBox.trim().length !== 0) {
-      navigate("/recipes/search", { state: searchBox });
+      navigate(`/recipes/search?query=${encodeURIComponent(searchBox)}`, { state: searchBox });
+    }
+  }
+
+  function handleOnlineSearch() {
+    if (searchBox.trim().length !== 0) {
+      navigate(`/search-online?query=${encodeURIComponent(searchBox)}`);
     }
   }
 
@@ -63,12 +69,13 @@ export default function MainNavigation() {
             onChange={(e) => setSearchBox(e.target.value)}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
-                handleSearch();
+                handleOnlineSearch();
               }
             }}
             placeholder="Search"
           ></input>
-          <button onClick={handleSearch}>
+          
+          <button onClick={handleLocalSearch}>
             <img className={classes["search-icon"]} src={SearchIcon} />
           </button>
         </div>

@@ -2,7 +2,7 @@ import { useRouteLoaderData, json } from "react-router-dom";
 import RecipeList from "../components/RecipeList";
 
 export default function RecipesPage() {
-  const recipes = useRouteLoaderData("all-recipes");
+  const recipes = useRouteLoaderData("my-recipes");
   return <RecipeList recipes={recipes.recipes} />;
 }
 

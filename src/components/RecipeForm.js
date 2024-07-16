@@ -43,7 +43,7 @@ export default function RecipeForm({ recipe, method }) {
             id="title"
             name="title"
             required
-            defaultValue={recipe ? recipe.name : ""}
+            defaultValue={recipe ? recipe.title : ""}
           ></input>
         </p>
         <p>
@@ -103,8 +103,10 @@ export default function RecipeForm({ recipe, method }) {
 
 export async function action({ request, params }) {
   const data = await request.formData();
-  const ingredients = data.get("ingredients").replace(/\n/g, "\n");
-  const directions = data.get("directions").replace(/\n/g, "\n");
+
+  const ingredients = data.get("ingredients") ? data.get("ingredients").replace(/\n/g, "\n") : "";
+  const directions = data.get("directions") ? data.get("directions").replace(/\n/g, "\n") : "";
+
   const recipeData = {
     title: data.get("title"),
     imageUrl: data.get("imageUrl"),
@@ -112,7 +114,7 @@ export async function action({ request, params }) {
     ingredients,
     directions,
   };
-
+ 
   let method = request.method;
 
   let url = "http://localhost:5000/recipes";
