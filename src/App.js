@@ -14,6 +14,7 @@ import { loader as recipeLoader } from "./Pages/RecipeDetail";
 import { action as deleteRecipeAction } from "./Pages/RecipeDetail";
 import { onlineRecipesLoader } from "./Pages/SearchResults";
 import { onlineRecipeLoader } from "./Pages/RecipeDetail";
+import { loader as randomRecipeLoader } from "./Pages/Home";
 import "./App.css";
 
 const router = createBrowserRouter([
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
+        loader: randomRecipeLoader,
         element: <HomePage />,
       },
       {
