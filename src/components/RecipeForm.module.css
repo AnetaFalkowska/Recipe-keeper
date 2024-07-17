@@ -40,3 +40,18 @@
   gap:15px;
 }
 
+.invalid-message {
+font-size: 12px;
+color:red;
+margin:0;
+}
+
+button:disabled {
+cursor:auto;
+opacity: 0.8;
+}
+
+.required {
+  font-size: 12px;
+}
+

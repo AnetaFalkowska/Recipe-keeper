@@ -6,6 +6,23 @@ import Button from "./UI/Button";
 
 export default function RecipeForm({ recipe, method }) {
   const [openModal, setOpenModal] = useState(false);
+  const [enteredTitle, setEnteredTitle] = useState("");
+  const [isTitleValid, setIsTitleValid] = useState(true);
+
+  function handleOnChangeTitle(e) {
+    setEnteredTitle(e.target.value);
+  }
+
+  const isValid =
+    enteredTitle.trim().length >= 3 && enteredTitle.trim().length <= 80;
+
+  function handleOnBlurTitle() {
+    enteredTitle && setIsTitleValid(isValid);
+  }
+
+  function handleOnFocusTitle() {
+    setIsTitleValid(true);
+  }
 
   const navigate = useNavigate();
   const actions = (
@@ -37,14 +54,22 @@ export default function RecipeForm({ recipe, method }) {
       ></Modal>
       <Form method={method} className={classes.form}>
         <p>
-          <label htmlFor="title">Title</label>
+          <label htmlFor="title">Title <span className={classes.required}>(required)</span></label>
           <input
+            className={!isTitleValid ? classes.invalid : ""}
             type="text"
             id="title"
             name="title"
             required
-            defaultValue={recipe ? recipe.title : ""}
+            onBlur={handleOnBlurTitle}
+            onChange={handleOnChangeTitle}
+            onFocus={handleOnFocusTitle}
           ></input>
+          {!isTitleValid && (
+            <p className={classes["invalid-message"]}>
+              Title should be between 3 and 80 characters long.
+            </p>
+          )}
         </p>
         <p>
           <label htmlFor="imageUrl">Image URL</label>
@@ -84,6 +109,7 @@ export default function RecipeForm({ recipe, method }) {
             defaultValue={recipe && recipe.directions ? recipe.directions : ""}
           ></textarea>
         </p>
+
         <div className={classes.actions}>
           <Button
             textOnly
@@ -94,7 +120,7 @@ export default function RecipeForm({ recipe, method }) {
           >
             Cancel
           </Button>
-          <Button>Save Recipe</Button>
+          <Button disabled={!isValid}>Save Recipe</Button>
         </div>
       </Form>
     </div>
@@ -104,8 +130,12 @@ export default function RecipeForm({ recipe, method }) {
 export async function action({ request, params }) {
   const data = await request.formData();
 
-  const ingredients = data.get("ingredients") ? data.get("ingredients").replace(/\n/g, "\n") : "";
-  const directions = data.get("directions") ? data.get("directions").replace(/\n/g, "\n") : "";
+  const ingredients = data.get("ingredients")
+    ? data.get("ingredients").replace(/\n/g, "\n")
+    : "";
+  const directions = data.get("directions")
+    ? data.get("directions").replace(/\n/g, "\n")
+    : "";
 
   const recipeData = {
     title: data.get("title"),
@@ -114,7 +144,7 @@ export async function action({ request, params }) {
     ingredients,
     directions,
   };
- 
+
   let method = request.method;
 
   let url = "http://localhost:5000/recipes";
