@@ -1,15 +1,15 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, json } from "react-router-dom";
 import RandomRecipe from "../components/RandomRecipe";
+import PageContent from "../components/UI/PageContent"
 
 export default function HomePage() {
 
 const data = useLoaderData()
 
   return (
-    <>
-      <h2>Browse your favorite recipes or discover a new one online!</h2>
+    <PageContent title="Browse your favorite recipes or discover a new one online!">
       <RandomRecipe recipe={data.recipe}/>
-    </>
+    </PageContent>
   );
 }
 
@@ -17,7 +17,7 @@ export async function loader() {
   const response = await fetch("http://localhost:5000/recipes/random");
 
   if (!response.ok) {
-    throw new Error("smth went wrong");
+    throw json({ message: "Could not fetch details for random recipe" }, { status: 500 });
   }
 
   return response;

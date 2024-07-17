@@ -1,12 +1,10 @@
 .random-card {
-    width: 80%;
-    max-width: 700px;
-    margin: 50px auto;
+    max-width: 600px;
+    margin: 30px auto;
     padding: 20px 40px;
     color: rgb(80, 79, 79);
     & h3 {
         text-align: center;
-
     }
 }
 
