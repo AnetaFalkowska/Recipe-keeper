@@ -19,7 +19,8 @@ export default function SearchResultsPage({ type }) {
     type === "local" ? "my-recipes" : "online-recipes"
   );
   const location = useLocation();
-  const searchItem = location.state;
+  const searchItem = new URLSearchParams(location.search).get("query")
+  // const searchItem = location.state;
   const searchResults = useMemo(() => {
     if (type === "local") {
       const { recipes: allRecipes } = data;

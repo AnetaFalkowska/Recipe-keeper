@@ -32,17 +32,17 @@ function renderOnlineRecipe(recipe) {
   );
 }
 
-export default function RecipeList({ recipes, type = "local", searchItem }) {
+export default function RecipeList({ recipes, type, searchItem }) {
   const renderRecipeItem =
-    type === "local" ? renderLocalRecipe : renderOnlineRecipe;
+    (!type || type === "local") ? renderLocalRecipe : renderOnlineRecipe;
 
-  if (recipes.length === 0) {
+  if (!recipes || recipes.length === 0) {
     return <h2>No recipes found for the query: {searchItem}</h2>
   }
 
   return (
     <div className={classes.recipes}>
-      <h2>{type === "online" ? "Here are the search results from online recipes:" : "Here are the search results from your recipe collection:"}</h2>
+      {type && <h2>{type === "online" ? "Recipes we found online" : "Finds from your recipe collection"}</h2>}
       <ul className={classes.list}>
         {recipes.map(renderRecipeItem)}
       </ul>

@@ -13,7 +13,8 @@ export default function MainNavigation() {
 
   function handleLocalSearch() {
     if (searchBox.trim().length !== 0) {
-      navigate(`/recipes/search?query=${encodeURIComponent(searchBox)}`, { state: searchBox });
+      navigate(`/recipes/search?query=${encodeURIComponent(searchBox)}`);
+      // navigate(`/recipes/search?query=${encodeURIComponent(searchBox)}`, { state: searchBox });
     }
   }
 
