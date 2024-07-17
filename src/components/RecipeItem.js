@@ -57,6 +57,8 @@ export default function RecipeItem({ recipe, type }) {
     submit(newRecipe, { method: "post", action: "/recipes/new" });
   }
 
+  const isLink= source.startsWith('http') || source.startsWith('https')
+
   return (
     <>
       <Modal
@@ -92,7 +94,7 @@ export default function RecipeItem({ recipe, type }) {
               ))}
             </ul>
           )}
-          <h3>Source: {source}</h3>
+          <h3>Source: {isLink ? <a href={source}>{source}</a> : <span>{source}</span>}</h3>
           <menu className={classes.actions}>
             {type==="local" ? <><Button
               textOnly
