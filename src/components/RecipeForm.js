@@ -64,6 +64,7 @@ export default function RecipeForm({ recipe, method }) {
             onBlur={handleOnBlurTitle}
             onChange={handleOnChangeTitle}
             onFocus={handleOnFocusTitle}
+            defaultValue={recipe && recipe.title ? recipe.title : ""}
           ></input>
           {!isTitleValid && (
             <p className={classes["invalid-message"]}>
