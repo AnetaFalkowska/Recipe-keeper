@@ -38,13 +38,17 @@ export default function RecipeItem({ recipe, type }) {
     return ingredientsArray;
   }, [recipe, type]);
 
-  const ingredients =
-    type === "local" ? recipe.ingredients.split("\n") : onlineRecipeIngredients;
-  const directions =
-    type === "local" ? recipe.directions : recipe.strInstructions;
-  const title = type === "local" ? recipe.title : recipe.strMeal;
-  const image = type === "local" ? recipe.imageUrl : recipe.strMealThumb;
-  const source = type === "local" ? recipe.source : recipe.strYoutube;
+  const isLocal = type === "local";
+
+  const ingredients = isLocal
+    ? recipe.ingredients.trim().length !== 0
+      ? recipe.ingredients.split("\n")
+      : []
+    : onlineRecipeIngredients;
+  const directions = isLocal ? recipe.directions : recipe.strInstructions;
+  const title = isLocal ? recipe.title : recipe.strMeal;
+  const image = isLocal ? recipe.imageUrl : recipe.strMealThumb;
+  const source = isLocal ? recipe.source : recipe.strYoutube;
 
   function saveToLocalRecipes() {
     const newRecipe = {
@@ -57,7 +61,9 @@ export default function RecipeItem({ recipe, type }) {
     submit(newRecipe, { method: "post", action: "/recipes/new" });
   }
 
-  const isLink= source.startsWith('http') || source.startsWith('https')
+  console.log(ingredients);
+
+  const isLink = source.startsWith("http") || source.startsWith("https");
 
   return (
     <>
@@ -94,22 +100,30 @@ export default function RecipeItem({ recipe, type }) {
               ))}
             </ul>
           )}
-          <h3>Source: {isLink ? <a href={source}>{source}</a> : <span>{source}</span>}</h3>
+          {source.trim().length !== 0 && (
+            <h3>
+              Source:{" "}
+              {isLink ? <a href={source}>{source}</a> : <span>{source}</span>}
+            </h3>
+          )}
           <menu className={classes.actions}>
-            {type==="local" ? <><Button
-              textOnly
-              onClick={() => {
-                setOpenModal(true);
-              }}
-            >
-              Delete
-            </Button>
-            <Button Container={Link} to="edit">
-              Edit
-            </Button></> :
-            <Button onClick={saveToLocalRecipes}>
-              Save to my recipes
-            </Button>}
+            {type === "local" ? (
+              <>
+                <Button
+                  textOnly
+                  onClick={() => {
+                    setOpenModal(true);
+                  }}
+                >
+                  Delete
+                </Button>
+                <Button Container={Link} to="edit">
+                  Edit
+                </Button>
+              </>
+            ) : (
+              <Button onClick={saveToLocalRecipes}>Save to my recipes</Button>
+            )}
           </menu>
         </div>
       </div>
