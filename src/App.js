@@ -15,6 +15,7 @@ import { action as deleteRecipeAction } from "./Pages/RecipeDetail";
 import { onlineRecipesLoader } from "./Pages/SearchResults";
 import { onlineRecipeLoader } from "./Pages/RecipeDetail";
 import { loader as randomRecipeLoader } from "./Pages/Home";
+import {loader as titlesLoader} from "./components/RecipeForm";
 import "./App.css";
 
 const router = createBrowserRouter([
@@ -52,6 +53,7 @@ const router = createBrowserRouter([
                 path: "edit",
                 element: <EditRecipePage />,
                 action: manipulateRecipeAction,
+                loader: titlesLoader,
               },
             ],
           },
@@ -59,6 +61,7 @@ const router = createBrowserRouter([
             path: "new",
             element: <NewRecipePage />,
             action: manipulateRecipeAction,
+            loader: titlesLoader,
           },
           {
             path: "search",
@@ -87,3 +90,5 @@ function App() {
 }
 
 export default App;
+
+

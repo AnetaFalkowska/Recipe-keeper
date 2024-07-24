@@ -46,12 +46,17 @@ color:red;
 margin:0;
 }
 
-button:disabled {
+.save-button:disabled,
+.save-button:hover {
 cursor:auto;
-opacity: 0.8;
+opacity: 0.2 !important;
 }
 
 .required {
   font-size: 12px;
+}
+
+.invalid {
+  margin-bottom: 4px !important;
 }
 

@@ -1,46 +1,67 @@
-import { Form, json, redirect, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import {
+  Form,
+  json,
+  redirect,
+  useNavigate,
+  useLoaderData,
+} from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
 import classes from "./RecipeForm.module.css";
 import Modal from "./UI/Modal";
 import Button from "./UI/Button";
 
+function isValidTitle(title) {
+  return title.trim().length >= 3 && title.trim().length <= 80;
+}
+
 export default function RecipeForm({ recipe, method }) {
   const [openModal, setOpenModal] = useState(false);
-  const [enteredTitle, setEnteredTitle] = useState("");
+  const [enteredTitle, setEnteredTitle] = useState(recipe?.title || "");
   const [isTitleValid, setIsTitleValid] = useState(true);
+  const [isTitleTaken, setIsTitleTaken] = useState(false);
 
-  function handleOnChangeTitle(e) {
+  const { titles } = useLoaderData();
+  const navigate = useNavigate();
+
+  function handleTitleChange(e) {
     setEnteredTitle(e.target.value);
+    setIsTitleTaken(false);
   }
 
-  const isValid =
-    enteredTitle.trim().length >= 3 && enteredTitle.trim().length <= 80;
-
-  function handleOnBlurTitle() {
+  function handleTitleBlur() {
     enteredTitle && setIsTitleValid(isValid);
   }
 
-  function handleOnFocusTitle() {
+  function handleTitleFocus() {
     setIsTitleValid(true);
   }
 
-  const navigate = useNavigate();
-  const actions = (
-    <>
-      <Button
-        textOnly
-        onClick={() => {
-          setOpenModal(false);
-        }}
-      >
-        No
-      </Button>
-      <Button onClick={handleConfirmCancel}>Yes</Button>
-    </>
-  );
   function handleConfirmCancel() {
     navigate("/recipes");
   }
+
+  useEffect(() => {
+    function checkTitleAvailability() {
+      const existingTitle =
+        titles.includes(enteredTitle) && enteredTitle !== recipe?.title;
+      setIsTitleTaken(existingTitle);
+    }
+    const timer = setTimeout(checkTitleAvailability, 500);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [titles, enteredTitle, recipe?.title]);
+
+  const actions = (
+    <>
+      <Button textOnly onClick={() => {setOpenModal(false)}}>No</Button>
+      <Button onClick={handleConfirmCancel}>Yes</Button>
+    </>
+  );
+
+  const isValid = isValidTitle(enteredTitle)
+  const disabled = !isValid || isTitleTaken
+
   return (
     <div className={classes["form-container"]}>
       <Modal
@@ -54,21 +75,30 @@ export default function RecipeForm({ recipe, method }) {
       ></Modal>
       <Form method={method} className={classes.form}>
         <p>
-          <label htmlFor="title">Title <span className={classes.required}>(required)</span></label>
+          <label htmlFor="title">
+            Title <span className={classes.required}>(required)</span>
+          </label>
           <input
-            className={!isTitleValid ? classes.invalid : ""}
+            className={`${
+              !isTitleValid || isTitleTaken ? classes.invalid : ""
+            }`}
             type="text"
             id="title"
             name="title"
             required
-            onBlur={handleOnBlurTitle}
-            onChange={handleOnChangeTitle}
-            onFocus={handleOnFocusTitle}
+            onBlur={handleTitleBlur}
+            onChange={handleTitleChange}
+            onFocus={handleTitleFocus}
             defaultValue={recipe && recipe.title ? recipe.title : ""}
           ></input>
           {!isTitleValid && (
             <p className={classes["invalid-message"]}>
               Title should be between 3 and 80 characters long.
+            </p>
+          )}
+          {isTitleTaken && (
+            <p className={classes["invalid-message"]}>
+              That title is already taken. Try a different one!
             </p>
           )}
         </p>
@@ -121,7 +151,12 @@ export default function RecipeForm({ recipe, method }) {
           >
             Cancel
           </Button>
-          <Button disabled={!isValid}>Save Recipe</Button>
+          <Button
+            className={disabled ? classes["save-button"] : ""}
+            disabled={disabled}
+          >
+            Save Recipe
+          </Button>
         </div>
       </Form>
     </div>
@@ -164,4 +199,17 @@ export async function action({ request, params }) {
     throw json({ message: "Could not save recipe" }, { status: 500 });
   }
   return redirect("/recipes");
+}
+
+export async function loader() {
+  const response = await fetch("http://localhost:5000/recipes/titles");
+
+  if (!response.ok) {
+    throw json(
+      { message: "Could not fetch titles for your recipes" },
+      { status: 500 }
+    );
+  }
+
+  return response;
 }

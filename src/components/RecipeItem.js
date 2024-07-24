@@ -103,7 +103,7 @@ export default function RecipeItem({ recipe, type }) {
           {source.trim().length !== 0 && (
             <h3>
               Source:{" "}
-              {isLink ? <a href={source}>{source}</a> : <span>{source}</span>}
+              {isLink ? <a href={source} target="_blank">{source}</a> : <span>{source}</span>}
             </h3>
           )}
           <menu className={classes.actions}>
