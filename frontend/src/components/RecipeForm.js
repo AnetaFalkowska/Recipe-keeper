@@ -188,7 +188,7 @@ export async function action({ request, params }) {
   if (method === "PATCH") {
     const recipeId = params.id;
     console.log(recipeId);
-    url = `${API_URL}/recipes` + recipeId;
+    url = `${API_URL}/recipes/` + recipeId;
   }
 
   const response = await fetch(url, {
