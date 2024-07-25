@@ -1,5 +1,6 @@
 import RecipeItem from "../components/RecipeItem";
 import { useRouteLoaderData, redirect, json } from "react-router-dom";
+import { API_URL } from '../config';
 
 export default function RecipeDetailPage({type}) {
   const data = useRouteLoaderData(type==="local" ? "local-id" : "online-id");
@@ -11,7 +12,7 @@ export default function RecipeDetailPage({type}) {
 
 export async function loader({ request, params }) {
   const id = params.id;
-  const response = await fetch("http://localhost:5000/recipes/" + id);
+  const response = await fetch(`${API_URL}/recipes/` + id);
 
   if (!response.ok) {
     throw json({ message: "Could not fetch details for selected recipe" }, { status: 500 });
@@ -36,7 +37,7 @@ export async function onlineRecipeLoader({ request, params }) {
 export async function action({request, params}) {
   const recipeId = params.id
   
-  const response = await fetch("http://localhost:5000/recipes/" + recipeId, {method:request.method})
+  const response = await fetch(`${API_URL}/recipes/` + recipeId, {method:request.method})
   if (!response.ok) {
     throw json({message:"Could not delete recipe"}, {status:500})
   }

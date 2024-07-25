@@ -9,6 +9,7 @@ import { useState, useEffect, useRef } from "react";
 import classes from "./RecipeForm.module.css";
 import Modal from "./UI/Modal";
 import Button from "./UI/Button";
+import { API_URL } from '../config';
 
 function isValidTitle(title) {
   return title.trim().length >= 3 && title.trim().length <= 80;
@@ -183,11 +184,11 @@ export async function action({ request, params }) {
 
   let method = request.method;
 
-  let url = "http://localhost:5000/recipes";
+  let url = `${API_URL}/recipes`;
   if (method === "PATCH") {
     const recipeId = params.id;
     console.log(recipeId);
-    url = "http://localhost:5000/recipes/" + recipeId;
+    url = `${API_URL}/recipes` + recipeId;
   }
 
   const response = await fetch(url, {
@@ -202,7 +203,7 @@ export async function action({ request, params }) {
 }
 
 export async function loader() {
-  const response = await fetch("http://localhost:5000/recipes/titles");
+  const response = await fetch(`${API_URL}/recipes/titles`);
 
   if (!response.ok) {
     throw json(
