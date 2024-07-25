@@ -7,9 +7,8 @@ export default function RandomRecipe({ recipe }) {
   const image = recipe.imageUrl || FoodImg;
   return (
     <div className={classes['random-card']}>
-      <h3>Try this random recipe!</h3>
-      <div className={classes["recipe-item"]}>
-        <Link to={`/recipes/${id}`}>
+      <h3>Try this random recipe!</h3>     
+        <Link to={`/recipes/${id}`} className={classes["recipe-item"]}>
           <img
             src={image}
             alt="dish"
@@ -18,8 +17,7 @@ export default function RandomRecipe({ recipe }) {
             }}
           />
           <h3>{recipe.title}</h3>
-        </Link>
-      </div>
+        </Link> 
     </div>
   );
 }

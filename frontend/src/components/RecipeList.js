@@ -10,8 +10,8 @@ function renderLocalRecipe(recipe) {
   const id = recipe.title.replace(/\s+/g, "-");
   const image = recipe.imageUrl || FoodImg;
   return (
-    <li key={recipe.id} className={classes["recipe-item"]}>
-      <Link to={`/recipes/${id}`}>
+    <li key={recipe.id} >
+      <Link to={`/recipes/${id}`} className={classes["recipe-item"]}>
         <img src={image} alt="dish" onError={defaultImg} />
         <h3>{recipe.title}</h3>
       </Link>
@@ -23,8 +23,8 @@ function renderOnlineRecipe(recipe) {
   // const recipeId = recipe.uri.split("_")[1];
   const image = recipe.strMealThumb || FoodImg;
   return (
-    <li key={recipe.idMeal} className={classes["recipe-item"]}>
-      <Link to={`/search-online/${recipe.idMeal}`}>
+    <li key={recipe.idMeal} >
+      <Link to={`/search-online/${recipe.idMeal}`} className={classes["recipe-item"]}>
         <img src={image} alt="dish" onError={defaultImg} />
         <h3>{recipe.strMeal}</h3>
       </Link>
