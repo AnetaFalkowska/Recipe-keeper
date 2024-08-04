@@ -49,3 +49,28 @@ h2 {
   margin: 20px 10px 8px;
 }
 
+@media screen and (max-width: 576px) {
+  .list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 15px;
+    column-gap: 10px;
+  }
+  .recipe-item {
+    padding: 10px;    
+  }
+
+  .recipe-item img {
+    max-width: 95%;
+    height: 150px;
+  }
+  .recipe-item h3 {
+    
+    font-size: 15px;
+    color: rgb(80, 79, 79);
+    padding: 0px;
+    margin: 15px 8px 8px;
+  }
+  
+}
+
