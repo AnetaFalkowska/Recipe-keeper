@@ -2,7 +2,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootPage from "./Pages/Root";
 import ErrorPage from "./Pages/Error";
 import HomePage from "./Pages/Home";
-import RecipesRootPage from "./Pages/RecipesRoot";
 import RecipesPage from "./Pages/Recipes";
 import RecipeDetailPage from "./Pages/RecipeDetail";
 import NewRecipePage from "./Pages/NewRecipe";
@@ -31,7 +30,7 @@ const router = createBrowserRouter([
       },
       {
         path: "recipes",
-        element: <RecipesRootPage />,
+        // element: <RecipesRootPage />,
         id: "my-recipes",
         loader: recipesLoader,
         children: [

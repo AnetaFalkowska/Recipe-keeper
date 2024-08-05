@@ -13,7 +13,7 @@ function renderLocalRecipe(recipe) {
     <li key={recipe.id} >
       <Link to={`/recipes/${id}`} className={classes["recipe-item"]}>
         <img src={image} alt="dish" onError={defaultImg} />
-        <h3>{recipe.title}</h3>
+        <p>{recipe.title}</p>
       </Link>
     </li>
   );
@@ -26,7 +26,7 @@ function renderOnlineRecipe(recipe) {
     <li key={recipe.idMeal} >
       <Link to={`/search-online/${recipe.idMeal}`} className={classes["recipe-item"]}>
         <img src={image} alt="dish" onError={defaultImg} />
-        <h3>{recipe.strMeal}</h3>
+        <p>{recipe.strMeal}</p>
       </Link>
     </li>
   );

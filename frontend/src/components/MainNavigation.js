@@ -1,4 +1,5 @@
 import { NavLink, useNavigate } from "react-router-dom";
+import { Search, ArrowLeft, House, Plus, BookText, User } from "lucide-react";
 import { useState } from "react";
 import classes from "./MainNavigation.module.css";
 import FoodImg from "../assets/food.png";
@@ -37,7 +38,8 @@ export default function MainNavigation() {
               }
               end
             >
-              Home
+              <House strokeWidth={1.5} />
+              <span className={classes['nav-text']}>Home</span>
             </NavLink>
           </li>
           <li>
@@ -46,8 +48,33 @@ export default function MainNavigation() {
               className={({ isActive }) =>
                 isActive ? classes.active : undefined
               }
+              end
             >
-              Recipes
+              <BookText strokeWidth={1.5} />
+              <span className={classes['nav-text']}>My Recipes</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/recipes/new"
+              className={({ isActive }) =>
+                isActive ? classes.active : undefined
+              }
+            >
+              <Plus strokeWidth={1.5} />
+              <span className={classes['nav-text']}>Add Recipe</span>
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink
+              to="/recipes/new"
+              className={({ isActive }) =>
+                isActive ? classes.active : undefined
+              }
+            >
+              <User strokeWidth={1.5} />
+              <span className={classes['nav-text']}>Account</span>
             </NavLink>
           </li>
         </ul>
@@ -61,11 +88,12 @@ export default function MainNavigation() {
         )}
         <div
           className={
-            showFullWidthSearchBar ? classes["loop-hidden"] : classes.loop
+            showFullWidthSearchBar ? classes["search-hidden"] : classes.search
           }
         >
           <button onClick={toggleSearchBar}>
-            <img className={classes["search-icon"]} src={SearchIcon} />
+            <Search />
+            {/* <img className={classes["search-icon"]} src={SearchIcon} /> */}
           </button>
         </div>
         <div
@@ -75,7 +103,8 @@ export default function MainNavigation() {
         >
           {showFullWidthSearchBar && (
             <button className={classes.arrow} onClick={toggleSearchBar}>
-              <img className={classes["search-icon"]} src={LeftArrow} />
+              <ArrowLeft />
+              {/* <img className={classes["search-icon"]} src={LeftArrow} /> */}
             </button>
           )}
           <input
@@ -96,7 +125,8 @@ export default function MainNavigation() {
             <option value="online">Online Recipes</option>
           </select>
           <button onClick={handleSearch}>
-            <img className={classes["search-icon"]} src={SearchIcon} />
+            <Search />
+            {/* <img className={classes["search-icon"]} src={SearchIcon} /> */}
           </button>
         </div>
       </section>

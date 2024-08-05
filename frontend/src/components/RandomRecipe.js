@@ -16,7 +16,7 @@ export default function RandomRecipe({ recipe }) {
               e.target.src = FoodImg;
             }}
           />
-          <h3>{recipe.title}</h3>
+          <p>{recipe.title}</p>
         </Link> 
     </div>
   );

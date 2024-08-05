@@ -1,13 +1,5 @@
 .page {
-  /* width: 80%; */
   max-width: 800px;
-  margin: 50px auto;
-  padding: 20px auto;
-  color: rgb(80, 79, 79);
-  
-  & h2,
-  & .content {
-    margin:20px;
-    text-align: center;
-  }
+  margin: auto;
+  padding: 0 30px;
 }
