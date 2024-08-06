@@ -64,7 +64,7 @@ export default function RecipeForm({ recipe, method }) {
   const disabled = !isValid || isTitleTaken
 
   return (
-    <div className={classes["form-container"]}>
+    <>
       <Modal
         open={openModal}
         title="Are you sure?"
@@ -160,7 +160,7 @@ export default function RecipeForm({ recipe, method }) {
           </Button>
         </div>
       </Form>
-    </div>
+    </>
   );
 }
 

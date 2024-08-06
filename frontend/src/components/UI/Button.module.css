@@ -6,7 +6,7 @@
   font-size: 16px;
   border: none;
   border-radius: 4px;
-  background-color: rgb(112, 109, 109);
+  background-color: #064420;
   color:#FDFAF6; 
   transition: opacity 0.5s;
   text-decoration: none;
@@ -21,11 +21,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 6px 20px;
+  padding: 10px 20px;
   font-size: 16px;
   border: none;
   background-color: transparent;
-  color:rgb(80, 79, 79);
+  color:#064420;
   text-decoration: none;
   cursor: pointer;
 }

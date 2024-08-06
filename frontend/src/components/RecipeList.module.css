@@ -1,10 +1,8 @@
 .recipes {
   max-width: 1500px;
-  margin: 0px auto;
-  padding: 7px 30px;
+  margin: auto;
+  padding: 0 70px;
 }
-
-
 
 .list {
   display: grid;
@@ -49,11 +47,16 @@
 }
 
 @media screen and (max-width: 768px) {
+  .recipes {
+    margin: 20px auto;
+    padding: 0 15px;
+  }
+
   .list {
     display: grid;
     grid-template-columns: repeat(auto-fill,minmax(150px, 1fr));
     column-gap: 10px;
-    row-gap: 15px;
+    row-gap: 20px;
   }
   .recipe-item {
     gap:8px;
