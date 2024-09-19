@@ -16,7 +16,6 @@ export default function MainNavigation() {
       const path =
         searchType === "local" ? `/recipes/search` : `/search-online`;
       navigate(`${path}?query=${query}`);
-      // navigate(`/recipes/search?query=${encodeURIComponent(searchBox)}`, { state: searchBox });
     }
   }
 
@@ -66,7 +65,7 @@ export default function MainNavigation() {
 
             <li>
               <NavLink
-                to="/recipes/new"
+                to="/account"
                 className={({ isActive }) =>
                   isActive ? classes.active : undefined
                 }

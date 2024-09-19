@@ -7,6 +7,7 @@ import RecipeDetailPage from "./Pages/RecipeDetail";
 import NewRecipePage from "./Pages/NewRecipe";
 import EditRecipePage from "./Pages/EditRecipe";
 import SearchResultsPage from "./Pages/SearchResults";
+import InProgressPage from "./Pages/InProgress";
 import { action as manipulateRecipeAction } from "./components/RecipeForm";
 import { loader as recipesLoader } from "./Pages/Recipes";
 import { loader as recipeLoader } from "./Pages/RecipeDetail";
@@ -79,6 +80,10 @@ const router = createBrowserRouter([
         id: "online-id",
         loader: onlineRecipeLoader,
         element: <RecipeDetailPage type="online"/>,
+      },
+      {
+        path: "account",
+        element: <InProgressPage/>,
       },
     ],
   },

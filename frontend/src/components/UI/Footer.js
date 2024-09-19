@@ -11,7 +11,7 @@ export default function Footer() {
     <footer className={classes.footer}>
       <ul>
         <li>
-          <a href="#">See My Portfolio Page</a>
+          <a href="https://falkowska-portfolio.onrender.com/">See My Portfolio Website</a>
         </li>
         <li>
           <Button onClick={scrollToTop}>            

@@ -19,7 +19,7 @@ export default function ErrorPage() {
   return (
     <>
       <MainNavigation />
-      <PageContent title="Error!">
+      <PageContent title={title}>
         <p>{message}</p>
       </PageContent>
     </>

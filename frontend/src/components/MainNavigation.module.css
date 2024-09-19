@@ -169,6 +169,9 @@ button.arrow:hover {
   .finder {
     display: none;
   }
+  .search-section {
+    padding: 2vh 15px;
+  }
   .search {
     display: inline-block;
   }

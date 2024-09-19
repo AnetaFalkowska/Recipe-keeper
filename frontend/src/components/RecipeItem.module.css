@@ -1,7 +1,7 @@
 .recipe {
   width: 80%;
   max-width: 700px;
-  background-color: #FDFAF6;
+  background-color: #fdfaf6;
   border-radius: 15px;
   margin: auto;
   padding: 20px 40px;
@@ -45,7 +45,7 @@
 }
 
 .card-section img {
-  flex-grow:1;
+  flex-grow: 1;
   max-width: 45%;
   object-fit: cover;
   border-radius: 2px;
@@ -59,13 +59,13 @@
   }
 }
 
-
 .actions {
   display: flex;
   justify-content: end;
-  gap:15px;
+  gap: 15px;
   padding: 0;
 }
+
 
 @media screen and (max-width: 768px) {
   .recipe {
@@ -75,12 +75,25 @@
   .card {
     gap: 15px;
   }
+  /* .card-section {
+    flex-direction: column-reverse;
+    gap: 30px;
+  }
+  .card-section img {
+    max-width: 70%;
+    height: 300px;
+    align-self: center;
+  } */
+}
+
+@media only screen and (max-width: 600px) {
   .card-section {
     flex-direction: column-reverse;
     gap: 30px;
   }
   .card-section img {
     max-width: 70%;
+    max-height: 200px;
     align-self: center;
-}
+  }
 }
