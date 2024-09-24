@@ -66,6 +66,16 @@
   margin: 0 5px;
 }
 
+.fallback {
+  width:fit-content;
+  margin: 0 auto;
+}
+
+.fallback a {
+text-decoration: underline;
+padding:0 3px;;
+}
+
 @media screen and (max-width: 768px) {
   .recipes {
     margin: 20px auto;

@@ -3,12 +3,12 @@ import classes from "./RandomRecipe.module.css";
 import FoodImg from "../assets/food.png";
 
 export default function RandomRecipe({ recipe }) {
-  const id = recipe.title.replace(/\s+/g, "-");
+
   const image = recipe.imageUrl || FoodImg;
   return (
     <div className={classes['random-card']}>
       <h3>Try this random recipe!</h3>     
-        <Link to={`/recipes/${id}`} className={classes["recipe-item"]}>
+        <Link to={`/recipes/${recipe.id}/${recipe.slug}`} className={classes["recipe-item"]}>
           <img
             src={image}
             alt="dish"

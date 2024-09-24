@@ -5,6 +5,15 @@ const { v4: generateId } = require('uuid');
 
 const { NotFoundError } = require('../util/errors');
 
+function generateSlug(title) {
+  return title
+  .toLowerCase()
+  .replace(/[^\w\s-]/g, '')
+  .trim() 
+  .replace(/\s+/g, '-')
+  .replace(/--+/g, '-')
+}
+
 async function readData() {
   const data = await fs.readFile('recipes.json', 'utf8');
   return JSON.parse(data);
@@ -38,7 +47,7 @@ async function get(id) {
 
 async function add(data) {
   const storedData = await readData();
-  const newRecipe = { ...data, id: urlTitle  data.title.replace(/\s+/g, "-") }
+  const newRecipe = { ...data, id: generateId(), slug:generateSlug(data.title) }
   storedData.recipes.unshift(newRecipe);
   await writeData(storedData);
   return newRecipe
@@ -55,7 +64,7 @@ async function replace(id, data) {
   if (index < 0) {
     throw new NotFoundError('Could not find recipes for id ' + id);
   }
-const updatedRecipe = { ...data, id: data.title.replace(/\s+/g, "-") }
+const updatedRecipe = { ...data, id: generateId(), slug:generateSlug(data.title) }
   storedData.recipes[index] = updatedRecipe;
 
   await writeData(storedData);
@@ -70,7 +79,7 @@ async function remove(id) {
 
 async function getRandom() {
   const storedData = await readData();
-  if (!storedData.recipes || storedData.recipes.length === 0) {
+  if (!storedData.recipes) {
     throw new NotFoundError('Could not find any recipes.');
   }
   const randomIndex = Math.floor(Math.random() * storedData.recipes.length);
@@ -80,7 +89,7 @@ async function getRandom() {
 
 async function getTitles() {
   const storedData = await readData();
-  if (!storedData.recipes || storedData.recipes.length === 0) {
+  if (!storedData.recipes) {
     throw new NotFoundError('Could not find any recipes.');
   }
   const titles = storedData.recipes.map(el=>el.title)

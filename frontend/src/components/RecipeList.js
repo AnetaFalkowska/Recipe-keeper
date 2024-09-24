@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import classes from "./RecipeList.module.css";
 import FoodImg from "../assets/food.png";
+import Button from "./UI/Button"
 
 function defaultImg(e) {
   e.target.src = FoodImg;
@@ -12,7 +13,7 @@ console.log(recipe.id)
   const image = recipe.imageUrl || FoodImg;
   return (
     <li key={recipe.id}>
-      <Link to={`/recipes/${recipe.id}`} id={`recipe-${recipe.id}`} className={classes["recipe-item"]}>
+      <Link to={`/recipes/${recipe.id}/${recipe.slug}`} id={`recipe-${recipe.id}`} className={classes["recipe-item"]}>
         <img src={image} alt="dish" onError={defaultImg} />
         <p>{recipe.title}</p>
       </Link>
@@ -61,8 +62,16 @@ export default function RecipeList({ recipes, type, searchItem }) {
   const renderRecipeItem =
     !type || type === "local" ? renderLocalRecipe : renderOnlineRecipe;
 
-  if (!recipes || recipes.length === 0) {
+  if (searchItem && (!recipes || recipes.length === 0)) {
     return <h2>No recipes found for the query: {searchItem}</h2>;
+  }
+  if (!searchItem && (!recipes || recipes.length === 0)) {
+    return <div className={classes.fallback}>
+      <h2>No recipes found in your collection</h2>
+    <p>
+      Click <Button Container={Link} textOnly to="/recipes/new">here</Button> to add a new recipe, or search for a recipe online.
+    </p>
+    </div>;
   }
 
   return (
@@ -70,7 +79,7 @@ export default function RecipeList({ recipes, type, searchItem }) {
       {type && (
         <h2>
           {type === "online"
-            ? "Recipes we found online"
+            ? "Recipes found online"
             : "Finds from your recipe collection"}
         </h2>
       )}

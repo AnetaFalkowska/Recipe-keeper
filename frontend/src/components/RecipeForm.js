@@ -9,7 +9,7 @@ import { useState, useEffect, useRef } from "react";
 import classes from "./RecipeForm.module.css";
 import Modal from "./UI/Modal";
 import Button from "./UI/Button";
-import { API_URL } from '../config';
+import { API_URL } from "../config";
 
 function isValidTitle(title) {
   return title.trim().length >= 3 && title.trim().length <= 80;
@@ -42,26 +42,35 @@ export default function RecipeForm({ recipe, method }) {
   }
 
   useEffect(() => {
-    function checkTitleAvailability() {
-      const existingTitle =
-        titles.includes(enteredTitle) && enteredTitle !== recipe?.title;
-      setIsTitleTaken(existingTitle);
+    if (titles.length !== 0) {
+      function checkTitleAvailability() {
+        const existingTitle =
+          titles.includes(enteredTitle) && enteredTitle !== recipe?.title;
+        setIsTitleTaken(existingTitle);
+      }
+      const timer = setTimeout(checkTitleAvailability, 500);
+      return () => {
+        clearTimeout(timer);
+      };
     }
-    const timer = setTimeout(checkTitleAvailability, 500);
-    return () => {
-      clearTimeout(timer);
-    };
   }, [titles, enteredTitle, recipe?.title]);
 
   const actions = (
     <>
-      <Button textOnly onClick={() => {setOpenModal(false)}}>No</Button>
+      <Button
+        textOnly
+        onClick={() => {
+          setOpenModal(false);
+        }}
+      >
+        No
+      </Button>
       <Button onClick={handleConfirmCancel}>Yes</Button>
     </>
   );
 
-  const isValid = isValidTitle(enteredTitle)
-  const disabled = !isValid || isTitleTaken
+  const isValid = isValidTitle(enteredTitle);
+  const disabled = !isValid || isTitleTaken;
 
   return (
     <>
@@ -199,8 +208,8 @@ export async function action({ request, params }) {
   if (!response.ok) {
     throw json({ message: "Could not save recipe" }, { status: 500 });
   }
-  const recipe = await response.json()
-  const recipeId = recipe.recipe.id
+  const recipe = await response.json();
+  const recipeId = recipe.recipe.id;
   return redirect(`/recipes?highlightedRecipeId=${recipeId}`);
 }
 

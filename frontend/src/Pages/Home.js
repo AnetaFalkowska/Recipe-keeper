@@ -9,7 +9,7 @@ const data = useLoaderData()
 
   return (
     <PageContent title="Browse your favorite recipes or discover a new one online!">
-      <RandomRecipe recipe={data.recipe}/>
+      {data.recipe && <RandomRecipe recipe={data.recipe}/>}
     </PageContent>
   );
 }

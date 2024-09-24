@@ -40,7 +40,7 @@ const router = createBrowserRouter([
             element: <RecipesPage />,
           },
           {
-            path: ":id",
+            path: ":id/:slug",
             id: "local-id",
             loader: recipeLoader,
             children: [
