@@ -44,8 +44,9 @@ router.get('/:id', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   const data = req.body;
   try {
-    await add(data);
-    res.status(201).json({ message: 'Recipe saved.', recipe: data })
+    const recipe = await add(data);
+    console.log(recipe)
+    res.status(201).json({ message: 'Recipe saved.', recipe: recipe })
   } catch (error) {
     next(error);
   }
@@ -54,8 +55,8 @@ router.post('/', async (req, res, next) => {
 router.patch('/:id', async (req, res, next) => {
   const data = req.body;
   try {
-    await replace(req.params.id, data);
-    res.json({ message: 'Recipe updated.', recipe: data });
+    const recipe = await replace(req.params.id, data);
+    res.json({ message: 'Recipe updated.', recipe: recipe });
   } catch (error) {
     next(error);
   }

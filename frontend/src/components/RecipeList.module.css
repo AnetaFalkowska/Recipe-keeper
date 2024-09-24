@@ -25,6 +25,26 @@
   gap:15px;
   height: 100%;
   text-decoration: none;
+  transition: background-color 0.5s ease;
+}
+
+.recipe-item.highlight {
+  animation: highlight-animation 1s ease forwards; 
+  background-color: #abcab4; 
+
+}
+
+@keyframes highlight-animation {
+  0% {
+    background-color: #abcab4;
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .recipe-item:hover {

@@ -199,7 +199,9 @@ export async function action({ request, params }) {
   if (!response.ok) {
     throw json({ message: "Could not save recipe" }, { status: 500 });
   }
-  return redirect("/recipes");
+  const recipe = await response.json()
+  const recipeId = recipe.recipe.id
+  return redirect(`/recipes?highlightedRecipeId=${recipeId}`);
 }
 
 export async function loader() {

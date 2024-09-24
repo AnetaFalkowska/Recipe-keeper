@@ -1,7 +1,7 @@
 const fs = require('node:fs/promises');
 
 
-// const { v4: generateId } = require('uuid');
+const { v4: generateId } = require('uuid');
 
 const { NotFoundError } = require('../util/errors');
 
@@ -38,8 +38,10 @@ async function get(id) {
 
 async function add(data) {
   const storedData = await readData();
-  storedData.recipes.unshift({ ...data, id: data.title.replace(/\s+/g, "-") });
+  const newRecipe = { ...data, id: urlTitle  data.title.replace(/\s+/g, "-") }
+  storedData.recipes.unshift(newRecipe);
   await writeData(storedData);
+  return newRecipe
 }
 
 async function replace(id, data) {
@@ -53,10 +55,11 @@ async function replace(id, data) {
   if (index < 0) {
     throw new NotFoundError('Could not find recipes for id ' + id);
   }
-
-  storedData.recipes[index] = { ...data, id: data.title.replace(/\s+/g, "-") };
+const updatedRecipe = { ...data, id: data.title.replace(/\s+/g, "-") }
+  storedData.recipes[index] = updatedRecipe;
 
   await writeData(storedData);
+  return updatedRecipe;
 }
 
 async function remove(id) {

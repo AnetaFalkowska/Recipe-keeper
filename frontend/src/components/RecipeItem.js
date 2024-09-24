@@ -61,8 +61,6 @@ export default function RecipeItem({ recipe, type }) {
     submit(newRecipe, { method: "post", action: "/recipes/new" });
   }
 
-  console.log(ingredients);
-
   const isLink = source.startsWith("http") || source.startsWith("https");
 
   return (
