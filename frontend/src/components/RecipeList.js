@@ -8,7 +8,7 @@ function defaultImg(e) {
   e.target.src = FoodImg;
 }
 
-function renderLocalRecipe(recipe) {
+function renderLibraryRecipe(recipe) {
   const image = recipe.imageUrl || FoodImg;
   return (
     <li key={recipe.id}>
@@ -58,7 +58,7 @@ export default function RecipeList({ recipes, type, searchItem }) {
   }, [highlightedRecipeId, classes.highlight]);
 
   const renderRecipeItem =
-    !type || type === "local" ? renderLocalRecipe : renderOnlineRecipe;
+    !type || type === "library" ? renderLibraryRecipe : renderOnlineRecipe;
 
   if (searchItem && (!recipes || recipes.length === 0)) {
     return <h2>No recipes found for the query: {searchItem}</h2>;

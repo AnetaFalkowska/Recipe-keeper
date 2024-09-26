@@ -41,12 +41,12 @@ const router = createBrowserRouter([
           },
           {
             path: ":id/:slug",
-            id: "local-id",
+            id: "library-id",
             loader: recipeLoader,
             children: [
               {
                 index: true,
-                element: <RecipeDetailPage type="local"/>,
+                element: <RecipeDetailPage type="library"/>,
                 action: deleteRecipeAction,
               },
               {
@@ -65,7 +65,7 @@ const router = createBrowserRouter([
           },
           {
             path: "search",
-            element: <SearchResultsPage type="local"/>,
+            element: <SearchResultsPage type="library"/>,
           },
         ],
       },

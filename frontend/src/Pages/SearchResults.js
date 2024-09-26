@@ -16,13 +16,13 @@ function filterRecipes(recipes, searchItem) {
 
 export default function SearchResultsPage({ type }) {
   const data = useRouteLoaderData(
-    type === "local" ? "my-recipes" : "online-recipes"
+    type === "library" ? "my-recipes" : "online-recipes"
   );
   const location = useLocation();
   const searchItem = new URLSearchParams(location.search).get("query")
   // const searchItem = location.state;
   const searchResults = useMemo(() => {
-    if (type === "local") {
+    if (type === "library") {
       const { recipes: allRecipes } = data;
       if (allRecipes && searchItem) {
         return filterRecipes(allRecipes, searchItem);

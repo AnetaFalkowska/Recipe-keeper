@@ -7,14 +7,14 @@ import FoodImg from "../assets/food.png";
 export default function MainNavigation() {
   const [searchBox, setSearchBox] = useState("");
   const [showFullWidthSearchBar, setShowFullWidthSearchBar] = useState(false);
-  const [searchType, setSearchType] = useState("local");
+  const [searchType, setSearchType] = useState("library");
   const navigate = useNavigate();
 
   function handleSearch() {
     if (searchBox.trim().length !== 0) {
       const query = encodeURIComponent(searchBox);
       const path =
-        searchType === "local" ? `/recipes/search` : `/search-online`;
+        searchType === "library" ? `/recipes/search` : `/search-online`;
       navigate(`${path}?query=${query}`);
     }
   }
@@ -120,7 +120,7 @@ export default function MainNavigation() {
               value={searchType}
               onChange={(e) => setSearchType(e.target.value)}
             >
-              <option value="local">My Recipes</option>
+              <option value="library">My Recipes</option>
               <option value="online">Online Recipes</option>
             </select>
             <button onClick={handleSearch}>

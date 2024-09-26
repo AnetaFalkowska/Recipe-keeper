@@ -3,9 +3,9 @@ import { useRouteLoaderData, redirect, json } from "react-router-dom";
 import { API_URL } from '../config';
 
 export default function RecipeDetailPage({type}) {
-  const data = useRouteLoaderData(type==="local" ? "local-id" : "online-id");
-  const recipe = type==="local" ? data.recipe : data.meals[0]
-
+  const data = useRouteLoaderData(type==="library" ? "library-id" : "online-id");
+  const recipe = type==="library" ? data.recipe : data.meals[0]
+console.log(recipe)
   return <RecipeItem recipe={recipe} type={type} />;
 }
 

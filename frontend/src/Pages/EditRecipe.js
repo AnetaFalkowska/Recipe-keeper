@@ -3,7 +3,7 @@ import { useRouteLoaderData } from "react-router-dom";
 
 export default function EditRecipePage() {
 
-    const data = useRouteLoaderData("local-id");
+    const data = useRouteLoaderData("library-id");
 
     return <RecipeForm recipe={data.recipe} method="patch"/>
 }

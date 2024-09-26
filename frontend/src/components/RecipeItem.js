@@ -39,19 +39,19 @@ export default function RecipeItem({ recipe, type }) {
     return ingredientsArray;
   }, [recipe, type]);
 
-  const isLocal = type === "local";
+  const isLibraryRecipe = type === "library";
 
-  const ingredients = isLocal
+  const ingredients = isLibraryRecipe
     ? recipe.ingredients.trim().length !== 0
       ? recipe.ingredients.split("\n")
       : []
     : onlineRecipeIngredients;
-  const directions = isLocal ? recipe.directions : recipe.strInstructions;
-  const title = isLocal ? recipe.title : recipe.strMeal;
-  const image = isLocal ? recipe.imageUrl : recipe.strMealThumb;
-  const source = isLocal ? recipe.source : recipe.strYoutube;
+  const directions = isLibraryRecipe ? recipe.directions : recipe.strInstructions;
+  const title = isLibraryRecipe ? recipe.title : recipe.strMeal;
+  const image = isLibraryRecipe ? recipe.imageUrl : recipe.strMealThumb;
+  const source = isLibraryRecipe ? recipe.source : recipe.strYoutube;
 
-  function saveToLocalRecipes() {
+  function saveToLibrary() {
     const newRecipe = {
       title,
       imageUrl: image,
@@ -107,7 +107,7 @@ export default function RecipeItem({ recipe, type }) {
             </h3>
           )}
           <menu className={classes.actions}>
-            {type === "local" ? (
+            {type === "library" ? (
               <>
                 <Button
                   textOnly
@@ -122,7 +122,7 @@ export default function RecipeItem({ recipe, type }) {
                 </Button>
               </>
             ) : (
-              <Button onClick={saveToLocalRecipes}>Save to my recipes</Button>
+              <Button onClick={saveToLibrary}>Save to my recipes</Button>
             )}
           </menu>
         </div>

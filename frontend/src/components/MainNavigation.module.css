@@ -148,7 +148,7 @@ button.arrow:hover {
   margin-right: 20px;
 }
 
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
   .menu ul {
     padding: 2vh 20px;
   }
@@ -160,9 +160,9 @@ button.arrow:hover {
     font-size: 30px;
     line-height: 35px;
   }
-}
+} */
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 768px) {
   .menu ul {
     padding: 3vh 20px;
   }
@@ -170,7 +170,8 @@ button.arrow:hover {
     display: none;
   }
   .search-section {
-    padding: 2vh 15px;
+    height: 90px;
+    padding: 10px 15px;
   }
   .search {
     display: inline-block;
@@ -178,4 +179,8 @@ button.arrow:hover {
   .nav-text {
     display: none;
   }
+  .logo h1 {
+    font-size: 30px;
+    line-height: 35px;
+}
 }
