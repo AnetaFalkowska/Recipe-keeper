@@ -45,10 +45,13 @@ export default function RecipeForm({ recipe, method }) {
     if (titles.length !== 0) {
       function checkTitleAvailability() {
         const existingTitle =
-          titles.includes(enteredTitle) && enteredTitle !== recipe?.title;
+        (method === "post" && titles.includes(enteredTitle.trim())) ||
+        (method === "patch" &&
+          titles.includes(enteredTitle.trim()) &&
+          enteredTitle.trim() !== recipe?.title);
         setIsTitleTaken(existingTitle);
       }
-      const timer = setTimeout(checkTitleAvailability, 500);
+      const timer = setTimeout(checkTitleAvailability, 200);
       return () => {
         clearTimeout(timer);
       };
@@ -208,9 +211,9 @@ export async function action({ request, params }) {
   if (!response.ok) {
     throw json({ message: "Could not save recipe" }, { status: 500 });
   }
-  const recipe = await response.json();
-  const recipeId = recipe.recipe.id;
-  return redirect(`/recipes?highlightedRecipeId=${recipeId}`);
+  const responseData = await response.json();
+  const highlightedRecipeId = responseData.recipe.id;
+  return redirect(`/recipes?highlightedRecipeId=${highlightedRecipeId}`);
 }
 
 export async function loader() {

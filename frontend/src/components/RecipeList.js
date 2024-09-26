@@ -9,7 +9,6 @@ function defaultImg(e) {
 }
 
 function renderLocalRecipe(recipe) {
-console.log(recipe.id)
   const image = recipe.imageUrl || FoodImg;
   return (
     <li key={recipe.id}>
@@ -41,14 +40,13 @@ export default function RecipeList({ recipes, type, searchItem }) {
   const location = useLocation()
   const params = new URLSearchParams(location.search)
   const highlightedRecipeId = params.get("highlightedRecipeId");
-  console.log(highlightedRecipeId)
+
 
   useEffect(() => {
     if (highlightedRecipeId) {
       const newRecipeElement = document.querySelector(
         `#recipe-${highlightedRecipeId}`
       );
-      console.log(newRecipeElement)
       if (newRecipeElement) {
         newRecipeElement.scrollIntoView({ behavior: "smooth", block: "center" });
         newRecipeElement.classList.add(classes.highlight);

@@ -1,5 +1,5 @@
-import { Link, useSubmit } from "react-router-dom";
-import { useState, useMemo, useSubmitt } from "react";
+import { Link, useSubmit, useNavigate } from "react-router-dom";
+import { useState, useMemo,} from "react";
 import classes from "./RecipeItem.module.css";
 import Modal from "./UI/Modal";
 import FoodImg from "../assets/food.png";
@@ -8,6 +8,7 @@ import Button from "./UI/Button";
 export default function RecipeItem({ recipe, type }) {
   const [openModal, setOpenModal] = useState(false);
   const submit = useSubmit();
+  const navigate = useNavigate();
   const actions = (
     <>
       <Button
@@ -58,7 +59,8 @@ export default function RecipeItem({ recipe, type }) {
       ingredients: ingredients.join("\n"),
       directions,
     };
-    submit(newRecipe, { method: "post", action: "/recipes/new" });
+    // submit(newRecipe, { method: "post", action: "/recipes/new" });
+    navigate("/recipes/new", {state:{newRecipe}})
   }
 
   const isLink = source.startsWith("http") || source.startsWith("https");
