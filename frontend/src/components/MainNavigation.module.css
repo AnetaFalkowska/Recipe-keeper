@@ -52,13 +52,16 @@
   display: flex;
   align-items: center;
   gap: 17px;
+  text-decoration: none;
 }
+
 .logo h1 {
   font-family: Pacifico;
   font-size: 40px;
   line-height: 55px;
   text-align: center;
   margin: 0;
+  color:rgb(41, 40, 40);
   text-shadow: 1px 1px 2px rgb(245, 206, 135);
 }
 

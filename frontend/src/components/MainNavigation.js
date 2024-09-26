@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, Link } from "react-router-dom";
 import { Search, ArrowLeft, House, Plus, BookText, User } from "lucide-react";
 import { useState } from "react";
 import classes from "./MainNavigation.module.css";
@@ -78,10 +78,10 @@ export default function MainNavigation() {
       </nav>
       <section className={classes["search-section"]}>
         {!showFullWidthSearchBar && (
-          <div className={classes.logo}>
+          <Link to="/" className={classes.logo}>
             <img src={FoodImg} alt="food" />
             <h1>Recipe keeper</h1>
-          </div>
+          </Link>
         )}
         <div
           className={
