@@ -111,7 +111,7 @@
   }
 }
 
-select {
+.select {
   border: solid 1px rgb(199, 195, 195);
   border-right: none;
   border-left: none;

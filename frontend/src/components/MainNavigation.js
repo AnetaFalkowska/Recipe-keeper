@@ -24,111 +24,110 @@ export default function MainNavigation() {
   }
 
   return (
-      <header className={classes.header}>
-        <nav className={classes.menu}>
-          <ul>
-            <li>
-              <NavLink
-                to="/"
-                className={({ isActive }) =>
-                  isActive ? classes.active : undefined
-                }
-                end
-              >
-                <House strokeWidth={1.5} />
-                <span className={classes["nav-text"]}>Home</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/recipes"
-                className={({ isActive }) =>
-                  isActive ? classes.active : undefined
-                }
-                end
-              >
-                <BookText strokeWidth={1.5} />
-                <span className={classes["nav-text"]}>My Recipes</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/recipes/new"
-                className={({ isActive }) =>
-                  isActive ? classes.active : undefined
-                }
-              >
-                <Plus strokeWidth={1.5} />
-                <span className={classes["nav-text"]}>Add Recipe</span>
-              </NavLink>
-            </li>
-
-            <li>
-              <NavLink
-                to="/account"
-                className={({ isActive }) =>
-                  isActive ? classes.active : undefined
-                }
-              >
-                <User strokeWidth={1.5} />
-                <span className={classes["nav-text"]}>Account</span>
-              </NavLink>
-            </li>
-          </ul>
-        </nav>
-        <section className={classes["search-section"]}>
-          {!showFullWidthSearchBar && (
-            <div className={classes.logo}>
-              <img src={FoodImg} alt="food" />
-              <h1>Recipe keeper</h1>
-            </div>
-          )}
-          <div
-            className={
-              showFullWidthSearchBar ? classes["search-hidden"] : classes.search
-            }
-          >
-            <button onClick={toggleSearchBar}>
-              <Search />
-              {/* <img className={classes["search-icon"]} src={SearchIcon} /> */}
-            </button>
-          </div>
-          <div
-            className={
-              showFullWidthSearchBar
-                ? classes["finder-visible"]
-                : classes.finder
-            }
-          >
-            {showFullWidthSearchBar && (
-              <button className={classes.arrow} onClick={toggleSearchBar}>
-                <ArrowLeft />
-                {/* <img className={classes["search-icon"]} src={LeftArrow} /> */}
-              </button>
-            )}
-            <input
-              value={searchBox}
-              onChange={(e) => setSearchBox(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  handleSearch();
-                }
-              }}
-              placeholder="Search"
-            ></input>
-            <select
-              value={searchType}
-              onChange={(e) => setSearchType(e.target.value)}
+    <header className={classes.header}>
+      <nav className={classes.menu}>
+        <ul>
+          <li>
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive ? classes.active : undefined
+              }
+              end
             >
-              <option value="library">My Recipes</option>
-              <option value="online">Online Recipes</option>
-            </select>
-            <button onClick={handleSearch}>
-              <Search />
-              {/* <img className={classes["search-icon"]} src={SearchIcon} /> */}
-            </button>
+              <House strokeWidth={1.5} />
+              <span className={classes["nav-text"]}>Home</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/recipes"
+              className={({ isActive }) =>
+                isActive ? classes.active : undefined
+              }
+              end
+            >
+              <BookText strokeWidth={1.5} />
+              <span className={classes["nav-text"]}>My Recipes</span>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/recipes/new"
+              className={({ isActive }) =>
+                isActive ? classes.active : undefined
+              }
+            >
+              <Plus strokeWidth={1.5} />
+              <span className={classes["nav-text"]}>Add Recipe</span>
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink
+              to="/account"
+              className={({ isActive }) =>
+                isActive ? classes.active : undefined
+              }
+            >
+              <User strokeWidth={1.5} />
+              <span className={classes["nav-text"]}>Account</span>
+            </NavLink>
+          </li>
+        </ul>
+      </nav>
+      <section className={classes["search-section"]}>
+        {!showFullWidthSearchBar && (
+          <div className={classes.logo}>
+            <img src={FoodImg} alt="food" />
+            <h1>Recipe keeper</h1>
           </div>
-        </section>
-      </header>
+        )}
+        <div
+          className={
+            showFullWidthSearchBar ? classes["search-hidden"] : classes.search
+          }
+        >
+          <button onClick={toggleSearchBar}>
+            <Search />
+            {/* <img className={classes["search-icon"]} src={SearchIcon} /> */}
+          </button>
+        </div>
+        <div
+          className={
+            showFullWidthSearchBar ? classes["finder-visible"] : classes.finder
+          }
+        >
+          {showFullWidthSearchBar && (
+            <button className={classes.arrow} onClick={toggleSearchBar}>
+              <ArrowLeft />
+              {/* <img className={classes["search-icon"]} src={LeftArrow} /> */}
+            </button>
+          )}
+          <input
+            value={searchBox}
+            onChange={(e) => setSearchBox(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleSearch();
+              }
+            }}
+            placeholder="Search"
+          ></input>
+          <select
+            className={classes.select}
+            value={searchType}
+            onChange={(e) => setSearchType(e.target.value)}
+          >
+            <option value="library">My Recipes</option>
+            <option value="online">Online Recipes</option>
+          </select>
+          <button onClick={handleSearch}>
+            <Search />
+            {/* <img className={classes["search-icon"]} src={SearchIcon} /> */}
+          </button>
+        </div>
+      </section>
+    </header>
   );
 }

@@ -3,6 +3,7 @@ import {
   json,
   redirect,
   useNavigate,
+  useNavigation,
   useLoaderData,
 } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
@@ -23,6 +24,8 @@ export default function RecipeForm({ recipe, method }) {
 
   const { titles } = useLoaderData();
   const navigate = useNavigate();
+  const navigation = useNavigate();
+  const isSubmitting = navigation.state === "submitting"
 
   function handleTitleChange(e) {
     setEnteredTitle(e.target.value);
@@ -160,15 +163,16 @@ export default function RecipeForm({ recipe, method }) {
             type="button"
             onClick={() => {
               setOpenModal(true);
+              disabled={isSubmitting}
             }}
           >
             Cancel
           </Button>
           <Button
             className={disabled ? classes["save-button"] : ""}
-            disabled={disabled}
-          >
-            Save Recipe
+            disabled={disabled || isSubmitting}
+                >
+            {isSubmitting ? "Submitting" : "Save Recipe"}
           </Button>
         </div>
       </Form>
