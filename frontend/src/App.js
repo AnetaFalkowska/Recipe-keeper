@@ -1,89 +1,83 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import RootPage from "./Pages/Root";
-import ErrorPage from "./Pages/Error";
-import HomePage from "./Pages/Home";
-import RecipesPage from "./Pages/Recipes";
-import RecipeDetailPage from "./Pages/RecipeDetail";
-import NewRecipePage from "./Pages/NewRecipe";
-import EditRecipePage from "./Pages/EditRecipe";
-import SearchResultsPage from "./Pages/SearchResults";
-import InProgressPage from "./Pages/InProgress";
-import { action as manipulateRecipeAction } from "./components/RecipeForm";
-import { loader as recipesLoader } from "./Pages/Recipes";
-import { loader as recipeLoader } from "./Pages/RecipeDetail";
-import { action as deleteRecipeAction } from "./Pages/RecipeDetail";
-import { onlineRecipesLoader } from "./Pages/SearchResults";
-import { onlineRecipeLoader } from "./Pages/RecipeDetail";
-import { loader as randomRecipeLoader } from "./Pages/Home";
-import {loader as titlesLoader} from "./components/RecipeForm";
-import "./App.css";
+import {lazy, Suspense} from 'react';
+import classes from "./App.module.css";
+
+const RootPage = lazy(()=>import("./Pages/Root"));
+const ErrorPage = lazy(()=>import("./Pages/Error"));
+const HomePage = lazy(()=>import("./Pages/Home"));
+const RecipesPage = lazy(()=>import("./Pages/Recipes"));
+const RecipeDetailPage = lazy(()=>import("./Pages/RecipeDetail"));
+const NewRecipePage = lazy(()=>import("./Pages/NewRecipe"));
+const EditRecipePage = lazy(()=>import("./Pages/EditRecipe"));
+const SearchResultsPage = lazy(()=>import("./Pages/SearchResults"));
+const InProgressPage = lazy(()=>import("./Pages/InProgress"));
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <RootPage />,
-    errorElement: <ErrorPage />,
+    element: <Suspense fallback={<p className={classes.loading}>Loading...</p>}><RootPage /></Suspense>,
+    errorElement: <Suspense fallback={<p>Loading...</p>}><ErrorPage /></Suspense>,
     children: [
       {
         index: true,
-        loader: randomRecipeLoader,
-        element: <HomePage />,
+        loader: ()=>import("./Pages/Home").then(module=>module.loader()),
+        element: <Suspense fallback={<p className={classes.loading}>Loading...</p>}><HomePage /></Suspense>,
       },
       {
         path: "recipes",
         // element: <RecipesRootPage />,
         id: "my-recipes",
-        loader: recipesLoader,
+        loader: ()=>import("./Pages/Recipes").then(module=>module.loader()),
         children: [
           {
             index: true,
-            element: <RecipesPage />,
+            element: <Suspense fallback={<p className={classes.loading}>Loading...</p>}><RecipesPage /></Suspense>,
           },
           {
             path: ":id/:slug",
             id: "library-id",
-            loader: recipeLoader,
+            loader: (meta)=>import("./Pages/RecipeDetail").then(module=>module.loader(meta)),
             children: [
               {
                 index: true,
-                element: <RecipeDetailPage type="library"/>,
-                action: deleteRecipeAction,
+                element: <Suspense fallback={<p className={classes.loading}>Loading...</p>}><RecipeDetailPage type="library"/></Suspense>,
+                action: (meta)=>import("./Pages/RecipeDetail").then(module=>module.action(meta)),
               },
               {
                 path: "edit",
-                element: <EditRecipePage />,
-                action: manipulateRecipeAction,
-                loader: titlesLoader,
+                element: <Suspense fallback={<p className={classes.loading}>Loading...</p>}><EditRecipePage /></Suspense>,
+                action: (meta)=>import("./components/RecipeForm").then(module=>module.action(meta)),
+                loader: ()=>import("./components/RecipeForm").then(module=>module.loader()),
               },
             ],
           },
           {
             path: "new",
-            element: <NewRecipePage />,
-            action: manipulateRecipeAction,
-            loader: titlesLoader,
+            element: <Suspense fallback={<p className={classes.loading}>Loading...</p>}><NewRecipePage /></Suspense>,
+            action: (meta)=>import("./components/RecipeForm").then(module=>module.action(meta)),
+            loader: ()=>import("./components/RecipeForm").then(module=>module.loader()),
           },
           {
             path: "search",
-            element: <SearchResultsPage type="library"/>,
+            element: <Suspense fallback={<p className={classes.loading}>Loading...</p>}><SearchResultsPage type="library"/></Suspense>,
           },
         ],
       },
       {
         path: "search-online",
         id: "online-recipes",
-        loader: onlineRecipesLoader,
-        element: <SearchResultsPage type="online"/>,
+        loader: (meta)=>import("./Pages/SearchResults").then(module=>module.onlineRecipesLoader(meta)),
+        element: <Suspense fallback={<p className={classes.loading}>Loading...</p>}><SearchResultsPage type="online"/></Suspense>,
       },
       {
         path: "search-online/:id",
         id: "online-id",
-        loader: onlineRecipeLoader,
-        element: <RecipeDetailPage type="online"/>,
+        loader: (meta)=>import("./Pages/RecipeDetail").then(module=>module.onlineRecipeLoader(meta)),
+        element: <Suspense fallback={<p className={classes.loading}>Loading...</p>}><RecipeDetailPage type="online"/></Suspense>,
       },
       {
         path: "account",
-        element: <InProgressPage/>,
+        element: <Suspense fallback={<p className={classes.loading}>Loading...</p>}><InProgressPage/></Suspense>,
       },
     ],
   },
